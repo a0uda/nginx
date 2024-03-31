@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: "nginx"
+    depends_on:
+      - frontend
+      - backend
+    expose:
+      - "443"
+    image: aoudaa/dkr-nginx
+
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/nginx/ssl:/etc/nginx/ssl
+
+    restart: always
+
+  frontend:
+    container_name: "frontend"
+    image: aoudaa/dkr-frontend
+    restart: on-failure
+    volumes:
+      - /app/node_modules
+
+  backend:
+    container_name: "backend"
+    image: aoudaa/dkr-backend
+    restart: on-failure
+    volumes:
+      - /app/node_modules
