@@ -1,5 +1,5 @@
 version: "3"
-# Test Should 
+# Test Should Not
 services:
   nginx:
     container_name: "nginx"
@@ -21,6 +21,8 @@ services:
   frontend:
     container_name: "frontend"
     image: aoudaa/dkr-frontend
+    env_file:
+      - .env
     restart: on-failure
     volumes:
       - /app/node_modules
@@ -28,6 +30,8 @@ services:
   backend:
     container_name: "backend"
     image: aoudaa/dkr-backend
+    env_file:
+      - .env
     restart: on-failure
     volumes:
       - /app/node_modules
