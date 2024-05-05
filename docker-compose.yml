@@ -4,7 +4,9 @@ services:
     container_name: "nginx"
     depends_on:
       - frontend
-      - backend
+      - backend1
+      - backend2
+      - backend3
     expose:
       - "443"
     image: aoudaa/dkr-nginx
