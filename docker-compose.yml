@@ -3,7 +3,9 @@ services:
   nginx:
     container_name: "nginx"
     depends_on:
-      - frontend
+      - frontend1
+      - frontend2
+      - frontend3
       - backend1
       - backend2
       - backend3
@@ -19,14 +21,38 @@ services:
 
     restart: always
 
-  frontend:
-    container_name: "frontend"
+  frontend1:
+    container_name: "frontend1"
     image: aoudaa/dkr-frontend
     env_file:
       - .env
     restart: on-failure
     volumes:
       - /app/node_modules
+    ports:
+      - "2998:3000"
+
+    frontend2:
+      container_name: "frontend2"
+      image: aoudaa/dkr-frontend
+      env_file:
+        - .env
+      restart: on-failure
+      volumes:
+        - /app/node_modules
+      ports:
+        - "2999:3000"
+
+    frontend3:
+      container_name: "frontend3"
+      image: aoudaa/dkr-frontend
+      env_file:
+        - .env
+      restart: on-failure
+      volumes:
+        - /app/node_modules
+      ports:
+        - "3000:3000"
 
   backend1:
     container_name: "backend1"
