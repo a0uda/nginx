@@ -1,5 +1,8 @@
 FROM nginx
 
+RUN apt-get update && apt-get install -y zsh
+
+
 EXPOSE 80
 EXPOSE 443
 # Copy ssl certificates
