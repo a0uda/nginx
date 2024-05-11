@@ -12,13 +12,11 @@ services:
     expose:
       - "443"
     image: aoudaa/dkr-nginx
-
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /etc/nginx/ssl:/etc/nginx/ssl
-
     restart: always
 
   frontend1:
@@ -32,27 +30,27 @@ services:
     ports:
       - "2998:3000"
 
-    frontend2:
-      container_name: "frontend2"
-      image: aoudaa/dkr-frontend
-      env_file:
-        - .env
-      restart: on-failure
-      volumes:
-        - /app/node_modules
-      ports:
-        - "2999:3000"
+  frontend2:
+    container_name: "frontend2"
+    image: aoudaa/dkr-frontend
+    env_file:
+      - .env
+    restart: on-failure
+    volumes:
+      - /app/node_modules
+    ports:
+      - "2999:3000"
 
-    frontend3:
-      container_name: "frontend3"
-      image: aoudaa/dkr-frontend
-      env_file:
-        - .env
-      restart: on-failure
-      volumes:
-        - /app/node_modules
-      ports:
-        - "3000:3000"
+  frontend3:
+    container_name: "frontend3"
+    image: aoudaa/dkr-frontend
+    env_file:
+      - .env
+    restart: on-failure
+    volumes:
+      - /app/node_modules
+    ports:
+      - "3000:3000"
 
   backend1:
     container_name: "backend1"
